@@ -8,21 +8,24 @@
 
 import Foundation
 
+
 public class BlockUserModalViewController: BaseElloViewController {
-
     weak public var relationshipDelegate: RelationshipDelegate?
-    // base
-    @IBOutlet weak public var backgroundButton: UIButton!
-    @IBOutlet weak public var modalView: UIView!
-    @IBOutlet weak public var closeButton: UIButton!
 
-    @IBOutlet weak public var titleLabel: UILabel!
+    public var backgroundButton = UIButton()
+    public var modalView = UIView()
+    public var closeButton = UIButton()
 
-    @IBOutlet weak public var muteButton: WhiteElloButton?
-    @IBOutlet weak public var muteLabel: UILabel!
+    public var titleLabel = UILabel()
 
-    @IBOutlet weak public var blockButton: WhiteElloButton?
-    @IBOutlet weak public var blockLabel: UILabel!
+    public var muteButton = WhiteElloButton()
+    public var muteLabel = UILabel()
+
+    public var blockButton = WhiteElloButton()
+    public var blockLabel = UILabel()
+
+    public var flagButton = WhiteElloButton()
+    public var flagLabel = UILabel()
 
     public var relationshipPriority: RelationshipPriority {
         didSet { selectButton(relationshipPriority) }
@@ -54,7 +57,7 @@ public class BlockUserModalViewController: BaseElloViewController {
         self.userAtName = userAtName
         self.relationshipPriority = relationshipPriority
         self.changeClosure = changeClosure
-        super.init(nibName: "BlockUserModalViewController", bundle: NSBundle(forClass: BlockUserModalViewController.self))
+        super.init(nibName: nil, bundle: nil)
         self.modalPresentationStyle = .Custom
         self.modalTransitionStyle = .CrossDissolve
     }
@@ -77,17 +80,17 @@ public class BlockUserModalViewController: BaseElloViewController {
         }
     }
 
-    @IBAction func blockTapped(sender: UIButton) {
+    func blockTapped(sender: UIButton) {
         Tracker.sharedTracker.userBlocked(userId)
         handleTapped(sender, newRelationship: RelationshipPriority.Block)
     }
 
-    @IBAction func muteTapped(sender: UIButton) {
+    func muteTapped(sender: UIButton) {
         Tracker.sharedTracker.userMuted(userId)
         handleTapped(sender, newRelationship: RelationshipPriority.Mute)
     }
 
-    @IBAction func closeModal(sender: UIButton?) {
+    func closeModal(sender: UIButton?) {
         Tracker.sharedTracker.userBlockCanceled(userId)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
@@ -98,17 +101,21 @@ public class BlockUserModalViewController: BaseElloViewController {
         backgroundButton.backgroundColor = UIColor.modalBackground()
         modalView.backgroundColor = UIColor.redColor()
         for label in [titleLabel, muteLabel, blockLabel] {
-            label.font = UIFont.defaultFont()
-            label.textColor = UIColor.whiteColor()
-            label.lineBreakMode = .ByWordWrapping
-            label.numberOfLines = 0
+            styleLabel(label)
         }
         closeButton.setImages(.X, white: true)
     }
 
+    private func styleLabel(label: UILabel) {
+        label.font = .defaultFont()
+        label.textColor = .whiteColor()
+        label.lineBreakMode = .ByWordWrapping
+        label.numberOfLines = 0
+    }
+
     private func setText() {
-        muteButton?.setTitle(InterfaceString.Relationship.MuteButton, forState: UIControlState.Normal)
-        blockButton?.setTitle(InterfaceString.Relationship.BlockButton, forState: UIControlState.Normal)
+        muteButton.setTitle(InterfaceString.Relationship.MuteButton, forState: UIControlState.Normal)
+        blockButton.setTitle(InterfaceString.Relationship.BlockButton, forState: UIControlState.Normal)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 6
         var attrString: NSMutableAttributedString
@@ -146,17 +153,17 @@ public class BlockUserModalViewController: BaseElloViewController {
     }
 
     private func resetButtons() {
-        muteButton?.selected = false
-        blockButton?.selected = false
+        muteButton.selected = false
+        blockButton.selected = false
     }
 
     private func selectButton(relationship: RelationshipPriority) {
         resetButtons()
         switch relationship {
         case .Mute:
-            muteButton?.selected = true
+            muteButton.selected = true
         case .Block:
-            blockButton?.selected = true
+            blockButton.selected = true
         default: resetButtons()
         }
     }
