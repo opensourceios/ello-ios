@@ -263,8 +263,7 @@ public class PostDetailViewController: StreamableViewController {
 
         let flagger = ContentFlagger(presentingController: self,
             flaggableId: post.id,
-            contentType: .Post,
-            commentPostId: nil)
+            contentType: .Post)
         flagger.displayFlaggingSheet()
     }
 

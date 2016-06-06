@@ -31,6 +31,7 @@ public enum ElloAPI {
     case FindFriends(contacts: [String: [String]])
     case FlagComment(postId: String, commentId: String, kind: String)
     case FlagPost(postId: String, kind: String)
+    case FlagUser(userId: String, kind: String)
     case FriendStream
     case FriendNewContent(createdAt: NSDate)
     case InfiniteScroll(queryItems: [AnyObject], elloApi: () -> ElloAPI)
@@ -133,6 +134,7 @@ public enum ElloAPI {
              .DeleteLove,
              .DeleteSubscriptions,
              .FlagPost,
+             .FlagUser,
              .InviteFriends,
              .ProfileDelete,
              .PushSubscriptions,
@@ -199,6 +201,7 @@ extension ElloAPI: Moya.TargetType {
                  .FindFriends,
                  .FlagComment,
                  .FlagPost,
+                 .FlagUser,
                  .InviteFriends,
                  .Join,
                  .PushSubscriptions,
@@ -270,10 +273,12 @@ extension ElloAPI: Moya.TargetType {
             return "/api/\(ElloAPI.apiVersion)/emoji/autocomplete"
         case .FindFriends:
             return "/api/\(ElloAPI.apiVersion)/profile/find_friends"
-        case let .FlagPost(postId, kind):
-            return "/api/\(ElloAPI.apiVersion)/posts/\(postId)/flag/\(kind)"
         case let .FlagComment(postId, commentId, kind):
             return "/api/\(ElloAPI.apiVersion)/posts/\(postId)/comments/\(commentId)/flag/\(kind)"
+        case let .FlagPost(postId, kind):
+            return "/api/\(ElloAPI.apiVersion)/posts/\(postId)/flag/\(kind)"
+        case let .FlagUser(userId, kind):
+            return "/api/\(ElloAPI.apiVersion)/users/\(userId)/flag/\(kind)"
         case .FriendNewContent,
              .FriendStream:
             return "/api/\(ElloAPI.apiVersion)/streams/friend"
@@ -371,7 +376,10 @@ extension ElloAPI: Moya.TargetType {
              .NoiseNewContent,
              .NotificationsNewContent,
              .ProfileDelete,
-             .PushSubscriptions:
+             .PushSubscriptions,
+             .FlagComment,
+             .FlagPost,
+             .FlagUser:
             return stubbedData("empty")
         case .Discover:
             return stubbedData("friends")
@@ -390,9 +398,7 @@ extension ElloAPI: Moya.TargetType {
             return stubbedData("activity_streams_noise_stream")
         case .NotificationsStream:
             return stubbedData("activity_streams_notifications")
-        case .PostComments,
-             .FlagPost,
-             .FlagComment:
+        case .PostComments:
             return stubbedData("posts_loading_more_post_comments")
         case .PostDetail,
             .UpdatePost:

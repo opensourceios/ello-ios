@@ -179,6 +179,7 @@ public struct InterfaceString {
 
         static let MuteButton = NSLocalizedString("Mute", comment: "Mute button title")
         static let BlockButton = NSLocalizedString("Block", comment: "Block button title")
+        static let FlagButton = NSLocalizedString("Flag", comment: "Flag button title")
         static let BlockedNoResultsTitle = NSLocalizedString("You haven't blocked any users", comment: "Current user no blocked results title")
         static let BlockedNoResultsBody = ""
         static let MutedNoResultsTitle = NSLocalizedString("You haven't muted any users", comment: "Current user no muted results title")
@@ -189,6 +190,7 @@ public struct InterfaceString {
         static let MuteAlertTemplate = NSLocalizedString("Would you like to \nmute or block %@?", comment: "alert prompt before muting or blocking")
         static let MuteWarningTemplate = NSLocalizedString("%@ will not be able to comment on your posts. If %@ mentions you, you will not be notified.", comment: "muting explanation")
         static let BlockWarningTemplate = NSLocalizedString("%@ will not be able to follow you or view your profile, posts or find you in search.", comment: "muting explanation")
+        static let FlagWarningTemplate = NSLocalizedString("%@ will be investigated by our staff.", comment: "flagging explanation")
     }
 
     public struct PushNotifications {

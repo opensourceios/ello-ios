@@ -27,10 +27,12 @@ extension ElloAPI: CustomStringConvertible, CustomDebugStringConvertible {
             return "Discover(type: \(type))"
         case let .EmojiAutoComplete(terms):
             return "EmojiAutoComplete(terms: \(terms))"
-        case let .FlagPost(postId, kind):
-            return "FlagPost(postId: \(postId), kind: \(kind))"
         case .FlagComment(_, _, _):
             return "FlagComment"
+        case let .FlagPost(postId, kind):
+            return "FlagPost(postId: \(postId), kind: \(kind))"
+        case let .FlagUser(userId, kind):
+            return "FlagUser(userId: \(userId), kind: \(kind))"
         case let .InfiniteScroll(_, elloApi):
             return "InfiniteScroll(elloApi: \(elloApi()))"
         case let .Loves(userId):
@@ -115,10 +117,12 @@ extension ElloAPI: CustomStringConvertible, CustomDebugStringConvertible {
             return "EmojiAutoComplete"
         case .FindFriends:
             return "FindFriends"
-        case .FlagPost:
-            return "FlagPost"
         case .FlagComment:
             return "FlagComment"
+        case .FlagPost:
+            return "FlagPost"
+        case .FlagUser:
+            return "FlagUser"
         case .FriendNewContent:
             return "FriendNewContent"
         case .FriendStream:

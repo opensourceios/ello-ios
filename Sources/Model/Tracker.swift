@@ -18,6 +18,7 @@ func logPresentingAlert(name: String) {
 public enum ContentType: String {
     case Post = "Post"
     case Comment = "Comment"
+    case User = "User"
 }
 
 public protocol AnalyticsAgent {
@@ -539,6 +540,16 @@ public extension Tracker {
     func userMuted(userId: String) {
         log("User muted, [muted_user_id: userId]")
         agent.track("User muted", properties: ["muted_user_id": userId])
+    }
+
+    func userUnblocked(userId: String) {
+        log("User UN-blocked, [blocked_user_id: \(userId)]")
+        agent.track("User UN-blocked", properties: ["blocked_user_id": userId])
+    }
+
+    func userUnmuted(userId: String) {
+        log("User UN-muted, [muted_user_id: userId]")
+        agent.track("User UN-muted", properties: ["muted_user_id": userId])
     }
 
     func userBlockCanceled(userId: String) {

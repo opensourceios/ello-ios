@@ -11,6 +11,7 @@ import Foundation
 public enum ContentType: String {
     case Post = "Post"
     case Comment = "Comment"
+    case User = "User"
 }
 
 func logPresentingAlert(name: String) {}

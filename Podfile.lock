@@ -66,6 +66,7 @@ PODS:
     - PINRemoteImage/Core
   - Quick (0.9.2)
   - Result (1.0.2)
+  - SnapKit (0.20.0)
   - SSPullToRefresh (1.2.4)
   - SVGKit (2.0.1):
     - CocoaLumberjack (~> 2.x)
@@ -138,10 +139,11 @@ DEPENDENCIES:
   - MBProgressHUD (~> 0.9.0)
   - Moya (~> 6.0.0)
   - Nimble (~> 4.0)
-  - Nimble-Snapshots (from `git@github.com:ashfurrow/Nimble-Snapshots`)
+  - Nimble-Snapshots (from `https://github.com/ashfurrow/Nimble-Snapshots`)
   - OHHTTPStubs (~> 4.3)
   - PINRemoteImage (from `https://github.com/pinterest/PINRemoteImage.git`, commit `af312667f0ce830264198366f481f1b222675a31`)
   - Quick (~> 0.9)
+  - SnapKit
   - SSPullToRefresh (~> 1.2)
   - SVGKit (from `https://github.com/SVGKit/SVGKit`)
   - SwiftyJSON (from `https://github.com/ello/SwiftyJSON`, branch `Swift-2.0`)
@@ -162,7 +164,7 @@ EXTERNAL SOURCES:
   KINWebBrowser:
     :git: https://github.com/ello/KINWebBrowser
   Nimble-Snapshots:
-    :git: git@github.com:ashfurrow/Nimble-Snapshots
+    :git: https://github.com/ashfurrow/Nimble-Snapshots
   PINRemoteImage:
     :commit: af312667f0ce830264198366f481f1b222675a31
     :git: https://github.com/pinterest/PINRemoteImage.git
@@ -189,7 +191,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/ello/KINWebBrowser
   Nimble-Snapshots:
     :commit: a9ec9a60b9e4ab08b5b0c9fe83ed7febdda368da
-    :git: git@github.com:ashfurrow/Nimble-Snapshots
+    :git: https://github.com/ashfurrow/Nimble-Snapshots
   PINRemoteImage:
     :commit: af312667f0ce830264198366f481f1b222675a31
     :git: https://github.com/pinterest/PINRemoteImage.git
@@ -230,6 +232,7 @@ SPEC CHECKSUMS:
   PINRemoteImage: 77a7f7bfacd2b4040786a0e31192a81003fdd41f
   Quick: 18d057bc66451eedd5d1c8dc99ba2a5db6e60226
   Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
   SSPullToRefresh: 369e862c1d6528c7a354fc85cd4763d4e670e9af
   SVGKit: 2afbeaf2c2be4615476951284750c3ddb790d0c7
   SwiftyJSON: 6f102a82daf888b0e39fe71ff12e36605c02babb
@@ -239,6 +242,6 @@ SPEC CHECKSUMS:
   WebLinking: d5b5ab4f7305bcf29821deb5cecd775f6c37efae
   YapDatabase: 861c720d5850a59f9e5c0bad0fd95334012b9dc9
 
-PODFILE CHECKSUM: 3a56ad00dfd905649adf7a1e663d392172f3b0f1
+PODFILE CHECKSUM: b3fb0552dbd5ccaacd2815d30ff8ec7202217af3
 
 COCOAPODS: 1.0.0

@@ -1,5 +1,4 @@
 //
-
 //  ContentFlagger.swift
 //  Ello
 //
@@ -19,7 +18,7 @@ public class ContentFlagger {
     let contentType: ContentType
     var commentPostId: String?
 
-    public init(presentingController: UIViewController?, flaggableId: String, contentType: ContentType, commentPostId: String?) {
+    public init(presentingController: UIViewController, flaggableId: String, contentType: ContentType, commentPostId: String? = nil) {
         self.presentingController = presentingController
         self.flaggableId = flaggableId
         self.contentType = contentType
@@ -57,13 +56,14 @@ public class ContentFlagger {
     func handler(action: AlertAction) {
         let option = AlertOption(rawValue: action.title)
         if let option = option {
-
             let endPoint: ElloAPI
             switch contentType {
             case .Post:
                 endPoint = ElloAPI.FlagPost(postId: flaggableId, kind: option.kind)
             case .Comment:
                 endPoint = ElloAPI.FlagComment(postId: commentPostId!, commentId: flaggableId, kind: option.kind)
+            case .User:
+                endPoint = ElloAPI.FlagUser(userId: flaggableId, kind: option.kind)
             }
 
             let service = ContentFlaggingService()
@@ -79,6 +79,9 @@ public class ContentFlagger {
     }
 
     public func displayFlaggingSheet() {
+        guard let presentingController = presentingController else {
+            return
+        }
 
         let alertController = AlertViewController(message: "Would you like to flag this content as:", textAlignment: .Left)
 
@@ -93,8 +96,8 @@ public class ContentFlagger {
 
         alertController.addAction(cancelAction)
 
-        logPresentingAlert(presentingController?.readableClassName() ?? "ContentFlagger")
-        presentingController?.presentViewController(alertController, animated: true, completion: .None)
+        logPresentingAlert(presentingController.readableClassName())
+        presentingController.presentViewController(alertController, animated: true, completion: .None)
     }
 
 }
